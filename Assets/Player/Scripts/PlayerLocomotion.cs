@@ -23,6 +23,7 @@ public class PlayerLocomotion : MonoBehaviour
     InputAction crouchAction;
     InputAction lookAction;
     InputAction previousAction;
+    InputAction nextAction;
 
     void OnEnable()
     {
@@ -35,6 +36,7 @@ public class PlayerLocomotion : MonoBehaviour
         crouchAction = map.FindAction("Crouch", true);
         lookAction = map.FindAction("Look", true);
         previousAction = map.FindAction("Previous", true);
+        nextAction = map.FindAction("Next", true);
     }
 
 
@@ -51,6 +53,7 @@ public class PlayerLocomotion : MonoBehaviour
         RotateAndLook();
 
         PerspectiveCheck();
+        SwapWeapon();
     }
 
     void SetCurrentCamera()
@@ -77,7 +80,7 @@ public class PlayerLocomotion : MonoBehaviour
             moveDirection = new Vector3(move.x, 0f, move.y);
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
-            if (jumpAction.triggered)
+            if (jumpAction.IsPressed())
             {
                 moveDirection.y = jumpSpeed;
             }
@@ -130,6 +133,28 @@ public class PlayerLocomotion : MonoBehaviour
                 }
 
                 SetCurrentCamera();
+            }
+        }
+    }
+
+    void SwapWeapon()
+    {
+        if (nextAction.WasPressedThisFrame())
+        { 
+            SwitchWeapon switchWeapon = GetComponent<SwitchWeapon>();
+
+            if (switchWeapon != null)
+            {
+                if (switchWeapon.GetWeapon() == SwitchWeapon.Weapon.Gun)
+                {
+                    switchWeapon.SetWeapon(SwitchWeapon.Weapon.Bow);
+                    gameObject.GetComponent<PlayerGunAttack>().enabled = false;
+                }
+                else
+                {
+                    switchWeapon.SetWeapon(SwitchWeapon.Weapon.Gun);
+                    gameObject.GetComponent<PlayerBowAttack>().enabled = false;
+                }
             }
         }
     }
