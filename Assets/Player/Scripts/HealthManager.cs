@@ -15,6 +15,15 @@ public class HealthManager : MonoBehaviour
         if (hitPoints <= 0)
         {
             Debug.Log("TODO: GAME OVER - YOU DIED");
+            Destroy(gameObject);
         }
+    }
+
+    void Heal(float HealthUp)
+    {
+        hitPoints += HealthUp;
+
+        Debug.Log("Healed: " + hitPoints.ToString());
+
     }
 }

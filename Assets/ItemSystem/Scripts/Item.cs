@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider))]
 public class Item : MonoBehaviour
@@ -25,12 +26,18 @@ public class Item : MonoBehaviour
     int maxStackableQuantity = 1; // for bundles of items, such as arrows or coins
 
     [SerializeField]
+    float HealthUp = 50f;
+
+    [SerializeField]
     bool isStorable = false; // if false, item will be used on pickup
     [SerializeField]
     bool isConsumable = true; // if true, item will be destroyed (or quantity reduced) when used
 
     [SerializeField]
     bool isPickupOnCollision = false;
+
+    [SerializeField]
+    bool isHealsPlayer = false;
 
     private void Start()
     {
@@ -59,10 +66,15 @@ public class Item : MonoBehaviour
         {
             Store();
         }
+        else if (isHealsPlayer)
+        {
+            Heal();
+        }
         else
         {
             Use();
         }
+
     }
 
     void Store()
@@ -85,5 +97,12 @@ public class Item : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        
+    }
+
+    void Heal()
+    {
+        gameObject.SendMessageUpwards("Heal", HealthUp, SendMessageOptions.DontRequireReceiver);
+        Destroy(gameObject);
     }
 }
