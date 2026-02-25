@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitManager
   hitPoints: 25
+  pointValue: 10
 --- !u!1 &7280585917334642606
 GameObject:
   m_ObjectHideFlags: 0

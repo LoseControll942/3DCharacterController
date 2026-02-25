@@ -162,3 +162,4 @@ MonoBehaviour:
   description: 
   rawDamage: 10
   isPickupOnCollision: 1
+  SaveTime: 1

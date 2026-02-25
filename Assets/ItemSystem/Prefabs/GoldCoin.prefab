@@ -163,5 +163,9 @@ MonoBehaviour:
   weight: 0
   quantity: 1
   maxStackableQuantity: 1
+  HealthUp: 50
   isStorable: 0
   isConsumable: 1
+  isPickupOnCollision: 1
+  isHealsPlayer: 0
+  pointValue: 1

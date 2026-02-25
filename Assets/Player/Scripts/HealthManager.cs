@@ -18,33 +18,42 @@ public class HealthManager : MonoBehaviour
     {
         hitPoints -= rawDamage;
         SetHealthSlider();
-
         Debug.Log("OUCH: " + hitPoints.ToString());
 
         if (hitPoints <= 0)
         {
-            Debug.Log("TODO: GAME OVER - YOU DIED");
+            OnDeath();
         }
-    }
-    void Heal(float HealthUp)
-    {
-        hitPoints += HealthUp;
-        SetHealthSlider();
-
-        Debug.Log("Healed: " + hitPoints.ToString());
-
     }
 
     void SetHealthSlider()
     {
         if (healthSlider != null)
         {
-            healthSlider.value = NormalisedHitPoints();
+            healthSlider.value = NormalisedHitPoint();
         }
     }
 
-    float NormalisedHitPoints()
+    float NormalisedHitPoint()
     {
         return hitPoints / maxHitPoints;
     }
+
+    void OnDeath()
+    {
+        Debug.Log("TODO: GAME OVER - YOU DIED");
+        GameManager.Instance.GameOver();
+    }
+
+    void Heal(float heal)
+    {
+        hitPoints += heal;
+        if (hitPoints > maxHitPoints)
+        {
+            hitPoints = maxHitPoints;
+        }
+        SetHealthSlider();
+        Debug.Log("Healed: " + hitPoints.ToString());
+    }
+
 }

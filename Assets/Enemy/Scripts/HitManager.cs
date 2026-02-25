@@ -8,6 +8,9 @@ public class HitManager : MonoBehaviour
     [SerializeField]
     float hitPoints = 25;
 
+    [SerializeField] 
+    int pointValue = 1;
+
     void Hit(float rawDamage)
     {
         hitPoints -= rawDamage;
@@ -20,5 +23,6 @@ public class HitManager : MonoBehaviour
     void SelfTerminate()
     {
         Destroy(gameObject);
+        GameManager.IncrementScore(pointValue);
     }
 }

@@ -39,6 +39,9 @@ public class Item : MonoBehaviour
     [SerializeField]
     bool isHealsPlayer = false;
 
+    [SerializeField] 
+    int pointValue = 1;
+
     private void Start()
     {
         if (isPickupOnCollision)
@@ -53,7 +56,15 @@ public class Item : MonoBehaviour
         {
             if (collider.tag == "Player")
             {
-                Interact();
+                if (isHealsPlayer)
+                {
+                    Heal(collider);
+                }
+                else
+                {
+                    Interact();
+                }
+                    
             }
         }
     }
@@ -65,10 +76,6 @@ public class Item : MonoBehaviour
         if (isStorable)
         {
             Store();
-        }
-        else if (isHealsPlayer)
-        {
-            Heal();
         }
         else
         {
@@ -96,13 +103,15 @@ public class Item : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+
+            GameManager.IncrementScore(pointValue);
+
         }
-        
     }
 
-    void Heal()
+    void Heal(Collider collider)
     {
-        gameObject.SendMessageUpwards("Heal", HealthUp, SendMessageOptions.DontRequireReceiver);
+        collider.SendMessageUpwards("Heal", HealthUp, SendMessageOptions.DontRequireReceiver);
         Destroy(gameObject);
     }
 }

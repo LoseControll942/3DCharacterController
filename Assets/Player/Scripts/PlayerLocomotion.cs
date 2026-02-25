@@ -43,17 +43,22 @@ public class PlayerLocomotion : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        GameManager.ResetGame();
+
         characterController = GetComponent<CharacterController>();
         SetCurrentCamera();
     }
 
     void Update()
     {
-        Locomotion();
-        RotateAndLook();
-
-        PerspectiveCheck();
-        SwapWeapon();
+        if (!MenuControls.IsGamePaused)
+        {
+            Locomotion();
+            RotateAndLook();
+            PerspectiveCheck();
+            SwapWeapon();
+        }
     }
 
     void SetCurrentCamera()

@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b4394568605c74bacf0ed91b3ee222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 2548520180277095138}
   icon: {fileID: 0}
   itemName: 
   description: 
@@ -77,8 +77,9 @@ MonoBehaviour:
   HealthUp: 50
   isStorable: 0
   isConsumable: 1
-  isPickupOnCollision: 0
+  isPickupOnCollision: 1
   isHealsPlayer: 1
+  pointValue: 1
 --- !u!1 &7890282358731709964
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,13 +106,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7890282358731709964}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.38268396, y: -0.000000029802319, z: 0.000000014901159, w: 0.92387927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6601915544473902781}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!33 &5893574683585349304
 MeshFilter:
   m_ObjectHideFlags: 0

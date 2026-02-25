@@ -26,9 +26,12 @@ public class PlayerGunAttack : MonoBehaviour
 
     void Update()
     {
-        FireWeapon();
-    }
+        if (!MenuControls.IsGamePaused)
+        {
+            FireWeapon();
+        }
 
+    }
     void FireWeapon()
     {
         if (attackAction.triggered)
