@@ -10,6 +10,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float speed = 6.0f;
     public float sprintSpeed = 8.0f;
     public float jumpSpeed = 10f;
+    public float crouchSpeed = 3.0f;
     public float mouseSensitivity = 0.5f;
     public float gravity = 20.0f;
     public float lookUpClamp = -30f;
@@ -106,6 +107,8 @@ public class PlayerLocomotion : MonoBehaviour
             {
                 characterController.height = 0.65f;
                 characterController.center = new Vector3(0f, 0.5f, 0f);
+                
+                moveDirection /= crouchSpeed;
             }
             else //if crouch unpressed
             {
