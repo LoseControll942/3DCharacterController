@@ -2665,16 +2665,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2837382323224271992, guid: a26e96403c83aad418a6442bb839de4d, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2837382323224271992, guid: a26e96403c83aad418a6442bb839de4d, type: 3}
       propertyPath: lookUpClamp
       value: -80
-      objectReference: {fileID: 0}
-    - target: {fileID: 2837382323224271992, guid: a26e96403c83aad418a6442bb839de4d, type: 3}
-      propertyPath: sprintSpeed
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2837382323224271992, guid: a26e96403c83aad418a6442bb839de4d, type: 3}
       propertyPath: lookDownClamp

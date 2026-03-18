@@ -34,7 +34,7 @@ public class PlayerGunAttack : MonoBehaviour
     }
     void FireWeapon()
     {
-        while (attackAction.IsPressed())
+        if (attackAction.triggered)
         {
 
             cameraTransform = Camera.main.transform;

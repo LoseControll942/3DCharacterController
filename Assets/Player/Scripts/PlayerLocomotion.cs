@@ -8,6 +8,7 @@ public class PlayerLocomotion : MonoBehaviour
     Transform playerContainer, cameraContainer;
 
     public float speed = 6.0f;
+    public float sprintSpeed = 8.0f;
     public float jumpSpeed = 10f;
     public float mouseSensitivity = 0.5f;
     public float gravity = 20.0f;
@@ -20,6 +21,7 @@ public class PlayerLocomotion : MonoBehaviour
     PlayerInput playerInput;
     InputAction moveAction;
     InputAction jumpAction;
+    InputAction sprintAction;
     InputAction crouchAction;
     InputAction lookAction;
     InputAction previousAction;
@@ -33,6 +35,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         moveAction = map.FindAction("Move", true);
         jumpAction = map.FindAction("Jump", true);
+        sprintAction = map.FindAction("Sprint", true);
         crouchAction = map.FindAction("Crouch", true);
         lookAction = map.FindAction("Look", true);
         previousAction = map.FindAction("Previous", true);
@@ -92,6 +95,13 @@ public class PlayerLocomotion : MonoBehaviour
                 moveDirection.y = jumpSpeed;
                 
             }
+            if (sprintAction.IsPressed())
+            {
+                moveDirection.x *= sprintSpeed;
+                moveDirection.z *= sprintSpeed;
+
+
+            }
             if (crouchAction.IsPressed())
             {
                 characterController.height = 0.65f;
@@ -110,6 +120,11 @@ public class PlayerLocomotion : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection.x *= speed;
             moveDirection.z *= speed;
+            if (sprintAction.IsPressed())
+            {
+                moveDirection.x *= speed;
+                moveDirection.z *= speed;
+            }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
