@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 public class CameraSight : MonoBehaviour
@@ -9,7 +10,6 @@ public class CameraSight : MonoBehaviour
     Transform lensTransform;
     float maxDistanceToTarget = 6f;
     float distanceToTarget;
-    float degreesPerSecond = 20;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class CameraSight : MonoBehaviour
         if (AngleBetween <= 65)
         {
             Quaternion rotation = Quaternion.LookRotation(lookVector);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.01f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.1f);
         }
     }
     private void RotateObject()
@@ -38,6 +38,7 @@ public class CameraSight : MonoBehaviour
     {
         
         Spot();
+
     }
 
     void Spot()
@@ -52,3 +53,4 @@ public class CameraSight : MonoBehaviour
         }
     }
 }
+

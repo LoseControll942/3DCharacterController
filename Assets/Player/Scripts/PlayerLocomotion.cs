@@ -79,6 +79,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     void Locomotion()
     {
+        
         if (characterController.isGrounded) // When grounded, set y-axis to zero (to ignore it)
         {
             Vector2 move = moveAction.ReadValue<Vector2>();
@@ -87,7 +88,9 @@ public class PlayerLocomotion : MonoBehaviour
             moveDirection *= speed;
             if (jumpAction.IsPressed())
             {
+                
                 moveDirection.y = jumpSpeed;
+                
             }
             if (crouchAction.IsPressed())
             {
@@ -99,6 +102,14 @@ public class PlayerLocomotion : MonoBehaviour
                 characterController.height = 2f;
                 characterController.center = new Vector3(0f, 1f, 0f);
             }
+        }
+        else
+        {
+            Vector2 move = moveAction.ReadValue<Vector2>();
+            moveDirection = new Vector3(move.x, moveDirection.y, move.y);
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection.x *= speed;
+            moveDirection.z *= speed;
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
