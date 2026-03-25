@@ -14,10 +14,19 @@ public class FieldOfView : MonoBehaviour
 
     public bool canSeePlayer;
 
+    public Material lensRed;
+    public Material lensGreen;
+    public Renderer targetRenderer;
+    public GameObject redLight;
+    public GameObject greenLight;
+
     void Start()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
+        targetRenderer.material = lensGreen;
+        redLight.SetActive(false);
+        greenLight.SetActive(true);
     }
 
     private IEnumerator FOVRoutine()
@@ -48,6 +57,10 @@ public class FieldOfView : MonoBehaviour
                 {
                     canSeePlayer = true;
                     Debug.Log("SPOTTED!!!");
+                    targetRenderer.material = lensRed;
+                    redLight.SetActive(true);
+                    greenLight.SetActive(false);
+                    
                 }
                 else
                 {
@@ -56,12 +69,15 @@ public class FieldOfView : MonoBehaviour
             }
             else
             {
-                canSeePlayer = false;
+                canSeePlayer = false;  
             }
         }
         else if (canSeePlayer)
         {
             canSeePlayer = false;
+            targetRenderer.material = lensGreen;
+            redLight.SetActive(false);
+            greenLight.SetActive(true);
         }
     }
 }
